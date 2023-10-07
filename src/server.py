@@ -1,13 +1,20 @@
-from flask import Flask, app
+from flask import Flask, app, jsonify
 
-# Create a Flask application instance
 app = Flask(__name__)
 
-# Define a route for the root URL ("/") and a function to handle it
+def send_json(obj):
+    response = jsonify(obj)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
+
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return send_json({ "status": "ok"})
+
+@app.route('/user_set_data')
+def route_user_set_data():
+    return send_json({ "status": "ok"})
 
 if __name__ == '__main__':
-    # Run the Flask app on the development server
     app.run()
