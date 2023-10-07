@@ -17,30 +17,20 @@ def _user_get_count(wallet_id):
 def user_create(wallet_id):
 	# make sure that the user doesnt exist
 	if _user_get_count(wallet_id) == 1:
-		return { "error", "account already exists" }
+		return { "error": "account already exists" }
 
 	query("INSERT INTO users (user_wallet_id, user_name, user_address) VALUES (?, ?, ?)", (wallet_id, "", ""))
 
-	return { "status", "ok" }
+	return { "status": "ok" }
 
 def user_set_info(wallet_id, user_name, user_address):
 	# make sure that the user does exist
 	if _user_get_count(wallet_id) == 0:
-		return { "error", "there is no account with this wallet" }
+		return { "error": "there is no account with this wallet" }
 
 	query("UPDATE users SET user_name = ?, user_address = ? WHERE wallet_id = ?", (user_name, user_address, wallet_id))
 
-	return { "status", "ok" }
-
-# assumes that the session_id is the first arg in the list 'args'
-def with_session(func, args):
-	user_id = get_user_id_from_session_token(args[0])
-	if user_id == -1: 
-		return { "error": "invalid session" }
-
-	# replace session_id with user_id, to use list expansion
-	args[0] = user_id
-	return func(*args)
+	return { "status": "ok" }
 
 def print_all_tables():
 	users          = query_get("SELECT * FROM users", ())
