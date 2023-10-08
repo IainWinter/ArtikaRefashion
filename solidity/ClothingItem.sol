@@ -1,16 +1,15 @@
 pragma solidity 0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ClothingItem is ERC20, Ownable {
+contract ClothingItem is ERC721, Ownable {
 
     uint256 brandID;
     uint256 sewedDate;
 
 
-    constructor(address _initialAddress, uint256 _brandID, uint256 _sewedDate) ERC20("ClothingItem Token", "CLOTH") Ownable(_initialAddress) { // ERC20("ClothingItem Token", "CLOTH")
+    constructor(address _initialAddress, uint256 _brandID, uint256 _sewedDate) ERC721("ClothingItem Token", "CLOTH") Ownable(_initialAddress) { // ERC20("ClothingItem Token", "CLOTH")
         brandID = _brandID;
         sewedDate = _sewedDate;
     }
