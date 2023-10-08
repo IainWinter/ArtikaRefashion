@@ -2,6 +2,11 @@
 
 html, body {
     color: #004643;
+    margin: 0;
+}
+
+.app {
+    margin: 5px;
 }
 
 .header-wrap {
@@ -64,11 +69,23 @@ html, body {
 }
 
 .form-top {
-    display: flex;        
+    display: flex;
+}
+
+.form-button {
+    margin-left: 10px;
+}
+
+.form-top {
+    display: flex;
 }
 
 .form-bottom {
     display: none;
+}
+
+.form-top-always-show {
+    display: flex;
 }
 
 @media only screen and (max-width: 600px) {
@@ -79,9 +96,13 @@ html, body {
     .form-bottom {
         display: flex;
         min-height: 50px;
+        flex-direction: column;
     }
 
     .form-button {
         flex-grow: 1;
+        margin: 0;
+        margin-top: 5px;
+        width: calc(100% - 30px);
     }
 }

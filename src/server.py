@@ -8,7 +8,7 @@ with app.app_context():
 
 @app.route('/')
 def route_home_page():
-    return send_file("static/index.html")
+    return send_file("static/community.html")
 
 @app.route('/link_account')
 def route_link_account_page():

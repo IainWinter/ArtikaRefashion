@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Clothing App</title>
+        <link rel="stylesheet" href="static/style/main.css" />
+        <link rel="stylesheet" href="static/style/community.css" />
+    </head>
+    <body>
+        <div class="app">
+            <div class="header-wrap">
+                <div class="header">
+                    <h1 class="title">artika</h1>
+                    <h2 class="subtitle">COMMUNITY</h2>
+                </div>
+
+                <div class="form-top-always-show">
+                    <a class="form-button swap_account" href="./link_account">LINK ACCOUNT</a>
+                </div>
+            </div>
+
+            <div class="cards-wrap">
+                <div id="cards1" class="cards1"></div>
+                <div id="cards2" class="cards2"></div>
+            </div>
+        </div>
+    </body>
+
+    <script src="static/src/global_vars.js"></script>
+    <script src="static/src/cookie.js"></script>
+    <script src="static/src/populate_cookies.js"></script>
+    <script src="static/src/talk.js"></script>
+    <script src="static/src/user.js"></script>
+
+    <script>
+        let g_cards1 = document.getElementById("cards1");
+        let g_cards2 = document.getElementById("cards2");
+
+        function card_create(pfpSrc, bgSrc) {
+            let card = document.createElement("div");
+            let pfp = document.createElement("img");
+            let bg = document.createElement("img");
+
+            pfp.src = pfpSrc;
+            bg.src = bgSrc;
+
+            card.classList = ["card"];
+            pfp.classList = ["card-pfp"];
+            bg.classList = ["card-bg"];
+
+            card.append(pfp);
+            card.append(bg);
+
+            if (g_cards1.children.length > g_cards2.children.length) {
+                g_cards2.append(card);
+            }
+
+            else {
+                g_cards1.append(card);
+            }
+        }
+
+        card_create("static/imgs/pfp1.png", "static/imgs/bg3.png");
+        card_create("static/imgs/pfp2.png", "static/imgs/bg2.png");
+        card_create("static/imgs/pfp4.png", "static/imgs/bg4.png");
+        card_create("static/imgs/pfp3.png", "static/imgs/bg1.png");
+        card_create("static/imgs/pfp1.png", "static/imgs/bg1.png");
+        card_create("static/imgs/pfp5.png", "static/imgs/bg3.png");
+
+        if (g_UserAccountWalletId) {
+            user_getInfo().then((response) => {
+                for(let e of document.getElementsByClassName("swap_account")) {
+                    e.innerHTML = "ACCOUNT";
+                    e.href = "/edit_account";
+                }
+            });
+        }
+    </script>
+</html>

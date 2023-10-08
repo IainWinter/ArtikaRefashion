@@ -1,0 +1,94 @@
+.cards-wrap {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.cards1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.cards2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    width: 50%;
+}
+
+.card {
+    width: 80%;
+    position: relative;
+    margin: 15px;
+    max-width: 300px;
+}
+
+.card-pfp {
+    border-radius: 50%;
+    width: 30%;
+    aspect-ratio: 1;
+    position: absolute;
+    bottom: -5%;
+    left: -5%;
+    z-index: 1;
+
+    transition: ease .2s transform;
+}
+
+.card-pfp:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.card-bg {
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 9/14;
+    transition: transform .2s ease;
+}
+
+.card-bg:hover {
+    transform: rotateZ(2deg);
+    cursor: pointer;
+}
+
+.select {
+    display: flex;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+}
+
+.form-button {
+    margin: auto;
+}
+
+/* .select-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    opacity: .7;
+}
+
+.select-form {
+    margin: auto;
+    z-index: 11;
+    color: white;
+    display: flex;
+}
+
+.select-img {
+    width: 300px;
+    height: auto;
+}
+
+.select-content {
+    color: white;
+    padding: 50px;
+} */
