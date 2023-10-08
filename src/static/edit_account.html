@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Clothing App</title>
+        <link rel="stylesheet" href="static/style/main.css" />
+        <link rel="stylesheet" href="static/style/form.css" />
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">artika</h1>
+            <h2 class="subtitle">REFASHION</h2>
+        </div>
+
+        <div id="acc-info">
+            <p class="pagetitle"><span><a class="back-button" href="/">&#8592</a></span>Account Information</p>
+            <form class="acc-form" id="user-account-data">
+                
+                <div class="inline-input">
+                    <p>Username</p>
+                    <input name="name" placeholder="No name" type="text"></input>
+                </div>
+                <div class="inline-input">
+                    <p>Address</p>
+                    <input name="address" placeholder="No address" type="text"></input>
+                </div>
+
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </body>
+
+    <script src="static/src/global_vars.js"></script>
+    <script src="static/src/cookie.js"></script>
+    <script src="static/src/populate_cookies.js"></script>
+    <script src="static/src/talk.js"></script>
+    <script src="static/src/user.js"></script>
+
+    <script>
+        if (!g_UserAccountWalletId) {
+            window.location = "/link_account";
+        }
+
+        // Fill initial form data
+
+        user_getInfo(g_UserAccountWalletId)
+        .then((response) => {
+            if ("error" in response) {
+                cookie_deleteWalletCookie();
+                window.location = window.location;
+                return;
+            }
+
+            let form = document.getElementById("user-account-data");
+
+            form["name"].value = response["user_name"];
+            form["address"].value = response["user_address"];
+
+            form.onsubmit = (e) => {
+                let username = form["name"].value;
+                let address = form["address"].value;
+
+                user_setInfo(g_UserAccountWalletId, username, address);
+            };
+        });
+    </script>
+</html>

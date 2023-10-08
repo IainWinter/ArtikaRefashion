@@ -1,0 +1,1 @@
+g_UserAccountWalletId = cookie_get(g_WalletCookieName);

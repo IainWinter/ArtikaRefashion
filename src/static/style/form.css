@@ -1,0 +1,64 @@
+.header {
+    margin-bottom: 20px;
+}
+
+.acc-form {
+    display: flex;
+    flex-direction: column;
+
+    margin: auto;
+    max-width: 300;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.inline-input {
+    width: auto;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-family: "League Spartan";
+    font-size: 18px;
+}
+
+.inline-input > * {
+    margin: 0;
+}
+
+.inline-input input {
+    border: none;
+    border: 1px solid lightgrey;
+    border-radius: 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.acc-form button {
+    background: #004643;
+    color: white;
+    text-align: center;
+    font-family: "League Spartan";
+    border-radius: 5px;
+    padding: 10px calc(10px * 13/9);
+    text-decoration: none;
+    margin: auto;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+.back-button {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .acc-form {
+        max-width: 100%;
+        background: none;
+    }
+}

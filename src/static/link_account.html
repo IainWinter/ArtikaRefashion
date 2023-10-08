@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Clothing App</title>
+        <link rel="stylesheet" href="static/style/main.css" />
+        <link rel="stylesheet" href="static/style/form.css" />
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">artika</h1>
+            <h2 class="subtitle">REFASHION</h2>
+        </div>
+
+        <div id="acc-link">
+            <p class="pagetitle"><span><a class="back-button" href="/">&#8592</a></span>Account Information</p>
+            <form class="acc-form" id="linkAccount-form">
+
+                <div class="inline-input">
+                    <p>Address</p>
+                    <input type="text" name="user_wallet_id"></input>
+                </div>
+                <div class="inline-input">
+                    <p>Are you a designer?</p>
+                    <input type="text" name="user_is_designer"></input>
+                </div>
+
+                <button type="submit">Link</button>
+            </form>
+        </div>
+    </body>
+
+    <script src="static/src/global_vars.js"></script>
+    <script src="static/src/cookie.js"></script>
+    <script src="static/src/populate_cookies.js"></script>
+    <script src="static/src/talk.js"></script>
+    <script src="static/src/user.js"></script>
+
+    <script>
+        if (g_UserAccountWalletId) {
+            cookie_deleteWalletCookie();
+        }
+
+        let g_linkAccountForm = document.getElementById("linkAccount-form");
+
+        g_linkAccountForm.onsubmit = (e) => {
+            e.preventDefault();
+            
+            let walletId = g_linkAccountForm["user_wallet_id"].value;
+            let isDesigner = g_linkAccountForm["user_is_designer"].checked ? 1 : 0;
+
+            user_linkAccount(walletId, isDesigner)
+            .then((response) => {
+                if ("error" in response) {
+                    window.location = "/link_account";
+                    console.error("Failed to link account: User not found");
+                    return;
+                }
+                
+                // actually remain on account so they can set their username
+                cookie_setWalletCookie(walletId);
+                window.location = "/edit_account";
+            });
+        };
+    </script>
+</html>
